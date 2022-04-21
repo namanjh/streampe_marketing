@@ -2624,7 +2624,6 @@ p {
   /* background: -webkit-linear-gradient(#deebfd 0%, rgba(255, 255, 255, 0) 100%);
   background: -o-linear-gradient(#deebfd 0%, rgba(255, 255, 255, 0) 100%);
   background: linear-gradient(#deebfd 0%, rgba(255, 255, 255, 0) 100%);  */
-  background-image: url('header_image copy.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
