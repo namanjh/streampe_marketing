@@ -7,7 +7,22 @@ $(function() {
     $(window).on('load', function(event) {
         $('.preloader').delay(500).fadeOut(500);
     });
-    
+
+    $(window).on('load', async function() {
+        if(window.location.href.includes('streampe.in')){
+            const addViewCount = await fetch(
+                'https://streampe-server.herokuapp.com/trackinfo/addcount',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                      },
+                    redirect: 'follow'
+                }
+            );
+        }
+    });
     
     //===== Sticky
     
@@ -95,23 +110,28 @@ $(function() {
             scrollTop: 0,
         }, 1500);
     });
-    
-    
-    //===== 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    $('.join-now-button').on('click', async function(){
+        const email = $('.email-input-text').val();
+        const addEmailResponse = await fetch(
+            'https://streampe-server.herokuapp.com/emails/addemail',
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                body: JSON.stringify({
+                    "email": email
+                }),
+                redirect: 'follow'
+            }
+        );
+        if(addEmailResponse.status == 200){
+            alert('Thank you for joining the waiting list');
+        }else{
+            alert('You are already part of our waiting list.')
+        }
+        $('.email-input-text').val('');
+    })
 });
